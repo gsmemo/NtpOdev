@@ -1,4 +1,5 @@
-﻿using OkulApp.MODEL;
+﻿using OkulApp.BLL;
+using OkulApp.MODEL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,44 +20,20 @@ namespace Gazi.OkulAppSube2BLG
             InitializeComponent();
         }
 
-        bool OgrenciEkle(Ogrenci ogr)
-        {
-            SqlConnection cn = null;
-            try
-            {
-                cn = new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=OkulDbSube2BLG;Integrated Security=true");
-                SqlCommand cmd = new SqlCommand($"Insert into tblOgrenciler (Ad,Soyad,Numara) values ('{ogr.Ad}','{ogr.Soyad}','{ogr.Numara}')", cn);
-                cn.Open();
-                int sonuc = cmd.ExecuteNonQuery();
-                return sonuc > 0;
-            }
-            catch (SqlException)
-            {
-                throw;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            finally
-            {
-                if (cn != null && cn.State != ConnectionState.Closed)
-                {
-                    cn.Close();
-                }
-            }
-        }
-
+       
+        //Dispose
+        //Garbage Collector
         private void btnKaydet_Click(object sender, EventArgs e)
         {
             try
             {
-                var ogrenci = new Ogrenci();
-                ogrenci.Ad = txtAd.Text.Trim();
-                ogrenci.Soyad = txtSoyad.Text.Trim();
-                ogrenci.Numara = txtNumara.Text.Trim();
+                //var ogrenci = new Ogrenci();
+                //ogrenci.Ad = txtAd.Text.Trim();
+                //ogrenci.Soyad = txtSoyad.Text.Trim();
+                //ogrenci.Numara = txtNumara.Text.Trim();
 
-                bool sonuc = OgrenciEkle(ogrenci);
+                var obl = new OgrenciBL();
+                bool sonuc = obl.OgrenciEkle(new Ogrenci { Ad = txtAd.Text.Trim(), Soyad = txtSoyad.Text.Trim(), Numara = txtNumara.Text.Trim() });
                 MessageBox.Show(sonuc ? "Ekleme başarılı!" : "Ekleme başarısız!!");
             }
             catch (SqlException ex)
@@ -66,7 +43,7 @@ namespace Gazi.OkulAppSube2BLG
                     case 2627:
                         MessageBox.Show("Bu numara daha önce kayıtlı");
                         break;
-                    default:
+                    default:                        
                         MessageBox.Show("Veritabanı Hatası!");
                         break;
                 }
@@ -77,4 +54,25 @@ namespace Gazi.OkulAppSube2BLG
             }
         }
     }
+
+    interface ITransfer
+    {
+        int EFT(string aliciiban, string gondereniban, double tutar);
+        int Havale(string aliciiban, string gondereniban, double tutar, DateTime tarih);
+    }
+
+    class TransferIslemleri : ITransfer
+    {
+        public int EFT(string aliciiban, string gondereniban, double tutar)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Havale(string aliciiban, string gondereniban, double tutar, DateTime tarih)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
+
+//n Katmanlı Mimari
