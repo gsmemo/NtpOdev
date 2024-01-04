@@ -29,13 +29,16 @@
         private void InitializeComponent()
         {
             this.grpOgrenci = new System.Windows.Forms.GroupBox();
-            this.txtAd = new System.Windows.Forms.TextBox();
-            this.txtSoyad = new System.Windows.Forms.TextBox();
             this.txtNumara = new System.Windows.Forms.TextBox();
             this.lblAd = new System.Windows.Forms.Label();
             this.lblSoyad = new System.Windows.Forms.Label();
             this.lblNumara = new System.Windows.Forms.Label();
+            this.txtSoyad = new System.Windows.Forms.TextBox();
+            this.txtAd = new System.Windows.Forms.TextBox();
             this.btnKaydet = new System.Windows.Forms.Button();
+            this.btnBul = new System.Windows.Forms.Button();
+            this.btnSil = new System.Windows.Forms.Button();
+            this.btnGuncelle = new System.Windows.Forms.Button();
             this.grpOgrenci.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,20 +56,6 @@
             this.grpOgrenci.TabIndex = 0;
             this.grpOgrenci.TabStop = false;
             this.grpOgrenci.Text = "Öğrenci Bilgileri";
-            // 
-            // txtAd
-            // 
-            this.txtAd.Location = new System.Drawing.Point(83, 30);
-            this.txtAd.Name = "txtAd";
-            this.txtAd.Size = new System.Drawing.Size(100, 20);
-            this.txtAd.TabIndex = 1;
-            // 
-            // txtSoyad
-            // 
-            this.txtSoyad.Location = new System.Drawing.Point(83, 66);
-            this.txtSoyad.Name = "txtSoyad";
-            this.txtSoyad.Size = new System.Drawing.Size(100, 20);
-            this.txtSoyad.TabIndex = 2;
             // 
             // txtNumara
             // 
@@ -102,6 +91,20 @@
             this.lblNumara.TabIndex = 6;
             this.lblNumara.Text = "Numara";
             // 
+            // txtSoyad
+            // 
+            this.txtSoyad.Location = new System.Drawing.Point(83, 66);
+            this.txtSoyad.Name = "txtSoyad";
+            this.txtSoyad.Size = new System.Drawing.Size(100, 20);
+            this.txtSoyad.TabIndex = 2;
+            // 
+            // txtAd
+            // 
+            this.txtAd.Location = new System.Drawing.Point(83, 30);
+            this.txtAd.Name = "txtAd";
+            this.txtAd.Size = new System.Drawing.Size(100, 20);
+            this.txtAd.TabIndex = 1;
+            // 
             // btnKaydet
             // 
             this.btnKaydet.Location = new System.Drawing.Point(95, 181);
@@ -112,11 +115,44 @@
             this.btnKaydet.UseVisualStyleBackColor = true;
             this.btnKaydet.Click += new System.EventHandler(this.btnKaydet_Click);
             // 
+            // btnBul
+            // 
+            this.btnBul.Location = new System.Drawing.Point(239, 23);
+            this.btnBul.Name = "btnBul";
+            this.btnBul.Size = new System.Drawing.Size(75, 23);
+            this.btnBul.TabIndex = 8;
+            this.btnBul.Text = "BUL";
+            this.btnBul.UseVisualStyleBackColor = true;
+            this.btnBul.Click += new System.EventHandler(this.btnBul_Click);
+            // 
+            // btnSil
+            // 
+            this.btnSil.Location = new System.Drawing.Point(239, 62);
+            this.btnSil.Name = "btnSil";
+            this.btnSil.Size = new System.Drawing.Size(75, 23);
+            this.btnSil.TabIndex = 9;
+            this.btnSil.Text = "SİL";
+            this.btnSil.UseVisualStyleBackColor = true;
+            this.btnSil.Click += new System.EventHandler(this.btnSil_Click);
+            // 
+            // btnGuncelle
+            // 
+            this.btnGuncelle.Location = new System.Drawing.Point(239, 101);
+            this.btnGuncelle.Name = "btnGuncelle";
+            this.btnGuncelle.Size = new System.Drawing.Size(75, 23);
+            this.btnGuncelle.TabIndex = 10;
+            this.btnGuncelle.Text = "Güncelle";
+            this.btnGuncelle.UseVisualStyleBackColor = true;
+            this.btnGuncelle.Click += new System.EventHandler(this.btnGuncelle_Click);
+            // 
             // frmOgrKayit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(239, 217);
+            this.ClientSize = new System.Drawing.Size(335, 222);
+            this.Controls.Add(this.btnGuncelle);
+            this.Controls.Add(this.btnSil);
+            this.Controls.Add(this.btnBul);
             this.Controls.Add(this.btnKaydet);
             this.Controls.Add(this.grpOgrenci);
             this.Name = "frmOgrKayit";
@@ -130,13 +166,16 @@
         #endregion
 
         private System.Windows.Forms.GroupBox grpOgrenci;
-        private System.Windows.Forms.TextBox txtNumara;
         private System.Windows.Forms.Label lblAd;
         private System.Windows.Forms.Label lblSoyad;
         private System.Windows.Forms.Label lblNumara;
-        private System.Windows.Forms.TextBox txtSoyad;
-        private System.Windows.Forms.TextBox txtAd;
         private System.Windows.Forms.Button btnKaydet;
+        private System.Windows.Forms.Button btnBul;
+        private System.Windows.Forms.Button btnSil;
+        public System.Windows.Forms.TextBox txtNumara;
+        public System.Windows.Forms.TextBox txtSoyad;
+        public System.Windows.Forms.TextBox txtAd;
+        private System.Windows.Forms.Button btnGuncelle;
     }
 }
 

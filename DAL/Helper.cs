@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace DAL
@@ -23,6 +24,18 @@ namespace DAL
                     return cmd.ExecuteNonQuery();
                 }
             }
+        }
+
+        public SqlDataReader ExecuteReader(string cmdtext, SqlParameter[] p = null)
+        {
+            cn = new SqlConnection(cstr);
+            cmd = new SqlCommand(cmdtext, cn);
+            if (p != null)
+            {
+                cmd.Parameters.AddRange(p);
+            }
+            cn.Open();
+            return cmd.ExecuteReader(CommandBehavior.CloseConnection);
         }
     }
 }
