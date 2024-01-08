@@ -22,22 +22,38 @@ namespace Gazi.OkulAppSube2BLG
             InitializeComponent();
             this.frm = frm;
         }
-
+        private void Form1_Load(object sender, EventArgs e)
+        {
+          
+            this.btnAra.Click += new System.EventHandler(this.btnAra_Click);
+        }
         private void btnAra_Click(object sender, EventArgs e)
         {
-            OgrenciBL obl = new OgrenciBL();
-            Ogrenci ogr = obl.OgrenciBul(txtNumara.Text.Trim());
-            if (ogr != null )
+            try
             {
-                frm.txtAd.Text = ogr.Ad;
-                frm.txtSoyad.Text=ogr.Soyad;
-                frm.txtNumara.Text = ogr.Numara;
-                frm.Ogrenciid = ogr.Ogrenciid;
+                OgrenciBL obl = new OgrenciBL();
+                Ogrenci ogr = obl.OgrenciBul(txtNumara.Text.Trim());
+                if (ogr != null)
+                {
+                    frm.txtAd.Text = ogr.Ad;
+                    frm.txtSoyad.Text = ogr.Soyad;
+                    frm.txtNumara.Text = ogr.Numara;
+                    frm.Ogrenciid = ogr.Ogrenciid;
+                    frm.btnSil.Enabled = true;
+                    frm.btnGuncelle.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("Öğrenci bulunamadı!!");
+                }
+                this.Close();
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Öğrenci bulunamadı!!");
+
+                MessageBox.Show(ex.Message);
             }
+            
         }
     }
 }

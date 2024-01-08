@@ -19,19 +19,16 @@ namespace Gazi.OkulAppSube2BLG
         public frmOgrKayit()
         {
             InitializeComponent();
+            btnGuncelle.Enabled = false;
+            btnSil.Enabled = false;
         }
 
 
-        //Dispose
-        //Garbage Collector
         private void btnKaydet_Click(object sender, EventArgs e)
         {
             try
             {
-                //var ogrenci = new Ogrenci();
-                //ogrenci.Ad = txtAd.Text.Trim();
-                //ogrenci.Soyad = txtSoyad.Text.Trim();
-                //ogrenci.Numara = txtNumara.Text.Trim();
+          
 
                 var obl = new OgrenciBL();
                 bool sonuc = obl.OgrenciEkle(new Ogrenci { Ad = txtAd.Text.Trim(), Soyad = txtSoyad.Text.Trim(), Numara = txtNumara.Text.Trim() });
@@ -57,20 +54,57 @@ namespace Gazi.OkulAppSube2BLG
 
         private void btnBul_Click(object sender, EventArgs e)
         {
-            var frm = new frmOgrBul(this);
-            frm.Show();
-        }
+            try
+            {
+                txtAd.Clear();
+                txtSoyad.Clear();
+                txtNumara.Clear();
+                var frm = new frmOgrBul(this);
+                frm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Exception hatası:" + ex.Message);
+            }
 
+
+
+        }
+        
+          
         private void btnSil_Click(object sender, EventArgs e)
         {
-            var obl = new OgrenciBL();
-            MessageBox.Show(obl.OgrenciSil(Ogrenciid) ? "Silme Başarılı" : "Başarısız!");
+            try
+            {
+                txtAd.Clear();
+                txtSoyad.Clear();
+                txtNumara.Clear();
+                var obl = new OgrenciBL();
+                MessageBox.Show(obl.OgrenciSil(Ogrenciid) ? "Silme Başarılı" : "Başarısız!");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Exception hatası");
+            }
+            
         }
 
         private void btnGuncelle_Click(object sender, EventArgs e)
         {
-            var obl = new OgrenciBL();
-            MessageBox.Show(obl.OgrenciGuncelle(new Ogrenci { Ad = txtAd.Text.Trim(), Soyad = txtSoyad.Text.Trim(), Numara = txtNumara.Text.Trim(), Ogrenciid = Ogrenciid }) ? "Güncelleme Başarılı" : "Güncelleme Başarısız!");
+            try
+            {
+                txtAd.Clear();
+                txtSoyad.Clear();
+                txtNumara.Clear();
+                var obl = new OgrenciBL();
+                MessageBox.Show(obl.OgrenciGuncelle(new Ogrenci { Ad = txtAd.Text.Trim(), Soyad = txtSoyad.Text.Trim(), Numara = txtNumara.Text.Trim(), Ogrenciid = Ogrenciid }) ? "Güncelleme Başarılı" : "Güncelleme Başarısız!");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Exception hatası");
+                throw;
+            }
+            
         }
     }
 
@@ -93,12 +127,3 @@ namespace Gazi.OkulAppSube2BLG
         }
     }
 }
-
-//n Katmanlı Mimari
-
-//Öğrenci bulunma durumuna göre Sil ve Güncelle Butonları Aktifliği
-//Textbox'ların text'lerinin temizlenmesi
-//Öğrenci bulunduğunda bul formunun kapanması
-//Try-Catch'ler Katmanlar arası exception yönetimi
-//Dispose Pattern - IDisposeble Interface
-//Singleton Design Pattern

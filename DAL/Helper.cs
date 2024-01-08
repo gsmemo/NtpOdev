@@ -7,35 +7,51 @@ namespace DAL
 {
     public class Helper
     {
+    
         SqlConnection cn;
         SqlCommand cmd;
         string cstr = ConfigurationManager.ConnectionStrings["cstr"].ConnectionString;
         public int ExecuteNonQuery(string cmdtext, SqlParameter[] p = null)
         {
-            using (cn = new SqlConnection(cstr))
+            try
             {
-                using (cmd = new SqlCommand(cmdtext, cn))
+                using (cn = new SqlConnection(cstr))
                 {
-                    if (p != null)
+                    using (cmd = new SqlCommand(cmdtext, cn))
                     {
-                        cmd.Parameters.AddRange(p);
+                        if (p != null)
+                        {
+                            cmd.Parameters.AddRange(p);
+                        }
+                        cn.Open();
+                        return cmd.ExecuteNonQuery();
                     }
-                    cn.Open();
-                    return cmd.ExecuteNonQuery();
                 }
             }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
         }
 
         public SqlDataReader ExecuteReader(string cmdtext, SqlParameter[] p = null)
         {
-            cn = new SqlConnection(cstr);
-            cmd = new SqlCommand(cmdtext, cn);
-            if (p != null)
+            try
             {
-                cmd.Parameters.AddRange(p);
+                cn = new SqlConnection(cstr);
+                cmd = new SqlCommand(cmdtext, cn);
+                if (p != null)
+                {
+                    cmd.Parameters.AddRange(p);
+                }
+                cn.Open();
+                return cmd.ExecuteReader(CommandBehavior.CloseConnection);
             }
-            cn.Open();
-            return cmd.ExecuteReader(CommandBehavior.CloseConnection);
+            catch(Exception ex) {
+                throw ex;
+            }
+
         }
     }
 }

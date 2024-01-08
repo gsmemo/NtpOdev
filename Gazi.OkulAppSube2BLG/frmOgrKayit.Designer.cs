@@ -171,11 +171,11 @@
         private System.Windows.Forms.Label lblNumara;
         private System.Windows.Forms.Button btnKaydet;
         private System.Windows.Forms.Button btnBul;
-        private System.Windows.Forms.Button btnSil;
+        public System.Windows.Forms.Button btnSil;
         public System.Windows.Forms.TextBox txtNumara;
         public System.Windows.Forms.TextBox txtSoyad;
         public System.Windows.Forms.TextBox txtAd;
-        private System.Windows.Forms.Button btnGuncelle;
+        public System.Windows.Forms.Button btnGuncelle;
     }
 }
 

@@ -4,10 +4,11 @@ using System;
 using System.Data.SqlClient;
 using System.Runtime.CompilerServices;
 
-namespace OkulApp.BLL//Bussiness Logic Layer
+namespace OkulApp.BLL
 {
     public class OgrenciBL
     {
+
         public bool OgrenciEkle(Ogrenci ogr)
         {
             try
@@ -21,23 +22,9 @@ namespace OkulApp.BLL//Bussiness Logic Layer
                 var hlp = new Helper();
                 return hlp.ExecuteNonQuery("Insert into tblOgrenciler (Ad,Soyad,Numara) values (@Ad,@Soyad,@Numara)", p) > 0;
             }
-            catch (SqlException)
+            catch (Exception ex)
             {
                 throw;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            finally
-            {
-                //if (cn != null && cn.State != ConnectionState.Closed)
-                //{
-                //    //cn.Close();
-                //    cn.Dispose();
-
-                //    cmd.Dispose();
-                //}
             }
         }
 
