@@ -1,0 +1,3 @@
+# NTP Ödevi
+
+## Ödev tamamlandı.
