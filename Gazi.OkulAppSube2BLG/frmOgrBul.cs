@@ -53,7 +53,7 @@ namespace Gazi.OkulAppSube2BLG
 
                 MessageBox.Show(ex.Message);
             }
-            
+            // bu güncellenmiş halidir.
         }
     }
 }

@@ -82,9 +82,9 @@ namespace Gazi.OkulAppSube2BLG
                 var obl = new OgrenciBL();
                 MessageBox.Show(obl.OgrenciSil(Ogrenciid) ? "Silme Başarılı" : "Başarısız!");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Exception hatası");
+                MessageBox.Show("Hata:"+ ex.Message );
             }
             
         }
@@ -99,10 +99,10 @@ namespace Gazi.OkulAppSube2BLG
                 var obl = new OgrenciBL();
                 MessageBox.Show(obl.OgrenciGuncelle(new Ogrenci { Ad = txtAd.Text.Trim(), Soyad = txtSoyad.Text.Trim(), Numara = txtNumara.Text.Trim(), Ogrenciid = Ogrenciid }) ? "Güncelleme Başarılı" : "Güncelleme Başarısız!");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Exception hatası");
-                throw;
+                MessageBox.Show("hata:" + ex.Message);
+           
             }
             
         }
